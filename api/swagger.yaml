@@ -1,0 +1,75 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    name: https://github.com/asavt7
+    url: https://github.com/asavt7
+  description: This is a simple image upload service
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: github.com/asavt7/my-file-service
+  version: "1.0"
+paths:
+  /api/download/{fileId}:
+    get:
+      consumes:
+      - multipart/form-data
+      description: download image of jpeg,png types
+      parameters:
+      - description: fileId
+        in: path
+        name: fileId
+        required: true
+        type: string
+      produces:
+      - image/png
+      - image/jpeg
+      responses:
+        "200":
+          description: ""
+      summary: downloadFile
+      tags:
+      - files
+  /api/health/liveness:
+    get:
+      description: liveness probe
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: ""
+      summary: liveness
+      tags:
+      - health
+  /api/health/readiness:
+    get:
+      description: readiness probe
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: ""
+      summary: readiness
+      tags:
+      - health
+  /api/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: upload image of jpeg,png types
+      parameters:
+      - description: file to upload
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: ""
+      summary: uploadFile
+      tags:
+      - files
+swagger: "2.0"

@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple image upload service",
+        "title": "github.com/asavt7/my-file-service",
+        "contact": {
+            "name": "https://github.com/asavt7",
+            "url": "https://github.com/asavt7"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/download/{fileId}": {
+            "get": {
+                "description": "download image of jpeg,png types",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "image/png",
+                    "image/jpeg"
+                ],
+                "tags": [
+                    "files"
+                ],
+                "summary": "downloadFile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "fileId",
+                        "name": "fileId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/health/liveness": {
+            "get": {
+                "description": "liveness probe",
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "liveness",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/health/readiness": {
+            "get": {
+                "description": "readiness probe",
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "readiness",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/upload": {
+            "post": {
+                "description": "upload image of jpeg,png types",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "files"
+                ],
+                "summary": "uploadFile",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "file to upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    }
+}
